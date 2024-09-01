@@ -1,6 +1,6 @@
 /* nav bar css */
 .custom-navbar {
-    background-color: lightblue;
+    background-color: lemonchiffon;
 }
 
 .navbar-brand img {
@@ -18,7 +18,6 @@ nav a {
     color: black;
 }
 
-/* sign up content css */
 body {
     display: flex;
     flex-direction: column;
@@ -28,21 +27,20 @@ body {
     flex: 1;
 }
 
-.signup-form {
-    max-width: 500px;
+/* forum info css */
+.container {
+    width: 60%;
     margin: 20px auto;
+    background-color: #fff;
     padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-
-/* Centering reCAPTCHA */
-.recaptcha-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    padding-bottom: 10px;
+.post {
+    background-color: #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
 /* footer css */
