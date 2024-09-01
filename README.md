@@ -1,9 +1,13 @@
 # YouthxHack 2024 - Team 10: SNAKE 💚
 ## Members
 Anne Marie Sim (Team Leader)
+
 Tan Guo Zhi Kelvin
+
 Lee Yu Han Elissa
+
 Nicole Paige Manik
+
 Sarah Than Sze J
 
 ## Features
