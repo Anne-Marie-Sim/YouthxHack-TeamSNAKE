@@ -16,19 +16,19 @@
     <script type="module" src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
     
     
-    <title>Navigation Bar</title>
+    <title>Login</title>
 </head>
 <body>
     <nav>
         <div class="nav-bar">
-            <span class="logo"><a href="#">Title</a></span>
+            <span class="logo"><a href="../public/index.html">2024 Help Go Where</a></span>
             
             <div class="menu">
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Forum</a></li>
-                    <li><a href="#">Credits</a></li>
+                    <li><a href="../public/index.html">Home</a></li>
+                    <li><a href="../public/resources.html">Resources</a></li>
+                    <li><a href="../public/forum.html">Forum</a></li>
+                    <li><a href="../public/credits.html">Credits</a></li>
                 </ul>
             </div>
 
@@ -125,6 +125,29 @@
         <i class="bx bx-x signUpClose" id="signUpClose"></i>
     </div>
 
+    <div class="loggedUser" id="loggedUser">
+        <form action="" class="loggedUserForm">
+            <h2 class="loggedUserTitle">User Profile</h2>
+            <div class="loggedUserTitleGroup">
+                <div>
+                    <label for="name" class="loggedUserLabel">Name</label>
+                    <input type="name" placeholder="Name" id="loggedUserName" class="loggedUserInput" readonly>
+                </div>
+
+                <div>
+                    <label for="email" class="loggedUserLabel">Email</label>
+                    <input type="email" placeholder="Email" id="loggedUserEmail" class="loggedUserInput" readonly>
+                </div>
+
+                <div>
+                    <button type="submit" class="logOutUserButton">Logout</button>
+                </div>
+            </div>
+        </form>
+
+        <i class="bx bx-x loggedUserClose" id="loggedUserClose"></i>
+    </div>
+
     <div class="sidebar" id="sidebar">
         <i class='bx bx-x menuClose' id="menuClose"></i>
         <ul class="sidebar-links">
@@ -132,6 +155,8 @@
             <li><a href="#">Resources</a></li>
             <li><a href="#">Forum</a></li>
             <li><a href="#">Credits</a></li>
+            <li><a href="#">Logout</a></li>
+            <i class='bx bx-exit'></i>
         </ul>
     </div>
 

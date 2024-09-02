@@ -1,3 +1,15 @@
+.volunteer_match {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding-top: 20px;
+}
+  
+.volunteer-image {
+    max-width: 40%; /* Make the image 50% of the container’s width */
+    height: 30px; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    border: 2px solid #ccc; /* Optional: Add a subtle border */
+    margin: 0 auto; /* Center the image horizontally */
+  }
 /* nav bar css */
 .custom-navbar {
     background-color: lemonchiffon;
