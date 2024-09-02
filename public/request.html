@@ -12,6 +12,9 @@
   <script type="module" src="./scripts/request.js"></script>
 </head>
 <body>
+  <!-- Google Translate element -->
+  <div id="google_translate_element"></div>
+  
   <div class="container">
     <h1>Welcome to Volunteer Assistance</h1>
     <p>Click the button below to request a volunteer.</p>
@@ -23,8 +26,49 @@
     </div>
   </div>
 
+<!-- Google Translate script for website -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          autoDisplay: false
+      }, 'google_translate_element');
+      
+      // Apply saved language after initialization
+      const savedLanguage = localStorage.getItem('googleTranslateLanguage');
+      if (savedLanguage) {
+          setTimeout(() => {
+              const translateElement = google.translate.TranslateElement.getInstance();
+              if (translateElement) {
+                  translateElement.setEnabled(true);
+                  translateElement.setLanguage(savedLanguage);
+              }
+          }, 500); // Delay to ensure translate element is fully initialized
+      }
+  }
 
-  
+  function saveLanguagePreference() {
+      const translateElement = google.translate.TranslateElement.getInstance();
+      if (translateElement) {
+          const selectedLanguage = translateElement.getCurrentLanguage();
+          localStorage.setItem('googleTranslateLanguage', selectedLanguage);
+      }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Google Translate
+      googleTranslateElementInit();
+
+      // Save language preference when it changes
+      document.addEventListener('change', function(event) {
+          if (event.target && event.target.matches('.goog-te-menu2-item')) {
+              saveLanguagePreference();
+          }
+      });
+  });
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
