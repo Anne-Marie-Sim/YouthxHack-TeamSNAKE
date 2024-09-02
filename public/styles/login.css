@@ -1,67 +1,495 @@
-/* nav bar css */
-.custom-navbar {
-    background-color: lemonchiffon;
+/* ==== Google Font Import - Poppins === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lobster&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-.navbar-brand img {
-    width: 150px;
-    height: auto;
+
+/* ==== Colours === */
+:root{
+    --body--color: #e4e9f7;
+    --nav--color: #4070f4;
+    --side--nav: #010718;
+    --text--color: #fff;
+    --search--bar: #f2f2f2;
+    --search--text: #010718;
+
+    --first-color: #5d7fff;
+    --title-color: #2b2d6e;
+    --text-color2: #7a7a7a;
+    --body-color: #f4f5f9;
+    --container-color: #e9eaf4;
+    --border-color: #b3b3b3;
 }
 
-.navbar-nav .nav-item .nav-link {
-    font-size: 18px;
+body{
+    height: 100vh;
+    background-color: var(--body--color);
 }
 
-nav a {
-    margin: 0 8px;
+body.dark{
+    --body--color: #18191a;
+    --nav--color: #242526;
+    --side--nav: #242526;
+    --text--color: #ccc;
+    --search--bar: #242526;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    background-color: var(--nav--color);
+}
+
+nav .nav-bar{
+    position: relative;
+    height: 100%;
+    max-width: 1000px;
+    width: 100%;
+    background-color: var(--nav--color);
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .nav-bar .logo a{
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--text--color);
     text-decoration: none;
-    color: black;
 }
 
-/* login contents css */
-body {
+.nav-bar .nav-links{
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-.content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-.login-form {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.nav-bar .nav-links li {
+    margin: 0 5px;
+    list-style: none;
 }
 
-/* Centering reCAPTCHA */
-.recaptcha-container {
+.nav-links li a {
+    position: relative;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text--color);
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links li a::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: var(--text--color);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-links li:hover a::before{
+    opacity: 1;
+}
+
+.nav-bar .darkLight-searchBox{
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    padding-bottom: 10px;
+    align-items: center;
 }
 
-/* footer css */
-.footer-custom {
-    background-color: #1F262D;
+.darkLight-searchBox .dark-light,
+.darkLight-searchBox .searchAction,
+.darkLight-searchBox .loginSignUpAction,
+.darkLight-searchBox .menuAction {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the icons inside their containers */
+    height: 40px;
+    width: 40px;
 }
 
-.footer-custom p {
-    margin: 0;
-    color: white;
+.darkLight-searchBox .searchAction,
+.darkLight-searchBox .loginSignUpAction,
+.darkLight-searchBox .menuAction {
+    font-size: 1.35rem;
+    color: var(--text--color);
+    cursor: pointer;
 }
 
-.footer-custom a {
-    color: white;
+.dark-light i{
+    position: absolute;
+    color: var(--text--color);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.footer-custom a:hover {
-    color: #e8ad28; /* hover effect */
+.dark-light i.sun{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dark-light.active i.sun{ /* since sun is written first in this line sun is first by default*/
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dark-light.active i.moon{ /* icon changes to moon when click */
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ================ SEARCH ================ */
+.search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(24px);
+    padding: 8rem 1.5rem 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s;
+}
+
+.searchForm {
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+    background-color: var(--search--bar);
+    padding-inline: 1rem;
+    border-radius: 0.5rem;
+    transform: translateY(-1rem);
+    transition: transform 0.4s;
+    max-width: 500px; 
+    min-height: 50px;
+    margin: 0 auto; 
+}
+
+.showSearch {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.showSearch .searchForm { 
+    transform: translateY(0);
+}
+
+.searchInput {
+    width: 100%;
+    padding-block: 1rem;
+    background-color: var(--search--bar);
+    color: var(--search--text);
+    border: none; /* removes the border */
+    outline: none; /* removes the outline when the search bar is clicked */
+}
+
+.searchInput::placeholder {
+    color:  var(--search--text);
+}
+
+.searchClose,
+.loginClose,
+.signUpClose {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    color: var(--title-color);
+    cursor: pointer;
+}
+
+/* ================ LOGIN ================ */
+.loginForm,
+.loginGroup {
+    display: grid;
+}
+
+.login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(24px);
+    padding: 3rem 1.5rem 0; /* top padding | right padding | bottom padding */
+    display: flex; /* Use Flexbox */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s;
+}
+
+.loginForm {
+    background-color: var(--container-color);
+    padding: 2rem 1.5rem 2.5rem;
+    box-shadow: 0 8px 32px hsla(230, 75%, 15%, 0.2);
+    border-radius: 1rem;
+    row-gap: 1.25rem;
+    text-align: center;
+    transform: translateY(-1rem);
+    transition: transform 0.4s;
+    width: 100%;
+    max-width: 450px;
+}
+
+.loginTitle {
+    font-size: 1.25rem;
+    color: var(--search--text);
+}
+
+.loginGroup {
+    row-gap: 1rem;
+}
+
+.loginLabel {
+    display: block;
+    text-align: initial;
+    color: var(--title-color);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.loginInput{
+    width: 100%;
+    background-color: var(--container-color);
+    border: 2px solid #b3b3b3; /* Set default border color and style */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: var(--text--color2);
+}
+
+.loginInput::placeholder {
+    color: var(--text-color2);
+}
+
+.loginSignUp {
+    margin-bottom: 0.5rem;
+}
+
+.loginSignUp a {
+    color: var(--first-color);
+}
+
+.loginForgot {
+    display: inline-block;
+    color: var(--first-color);
+    margin-bottom: 1.25rem;
+}
+
+.loginButton {
+    display: inline-block;
+    background-color: var(--first-color);
+    width: 100%;
+    color: #fff;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.4s;
+}
+
+.loginButton:hover {
+    box-shadow: 0 4px 24px hsla(230, 75%, 40%, 0.4);
+}
+
+.showLogin {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.showLogin .loginForm {
+    transform: translateY(0);
+}
+
+/* ================ SIGN UP ================ */
+.signUpForm,
+.signUpGroup {
+    display: grid;
+}
+
+.signUp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(24px);
+    padding: 3rem 1.5rem 0; /* top padding | right padding | bottom padding */
+    display: flex; /* Use Flexbox */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s;
+}
+
+.signUpForm {
+    background-color: var(--container-color);
+    padding: 2rem 1.5rem 2.5rem;
+    box-shadow: 0 8px 32px hsla(230, 75%, 15%, 0.2);
+    border-radius: 1rem;
+    row-gap: 1.25rem;
+    text-align: center;
+    transform: translateY(-1rem);
+    transition: transform 0.4s;
+    width: 100%;
+    max-width: 450px;
+}
+
+.signUpTitle {
+    font-size: 1.25rem;
+    color: var(--search--text);
+}
+
+.signUpGroup {
+    row-gap: 1rem;
+}
+
+.signUpLabel {
+    display: block;
+    text-align: initial;
+    color: var(--title-color);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.signUpInput {
+    width: 100%;
+    background-color: var(--container-color);
+    border: 2px solid #b3b3b3; /* Set default border color and style */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: var(--text--color2);
+}
+
+.signUpInput::placeholder {
+    color: var(--text-color2);
+}
+
+.signUpLogin {
+    margin-bottom: 0.5rem;
+}
+
+.signUpLogin a {
+    color: var(--first-color);
+}
+
+.signUpButton {
+    display: inline-block;
+    background-color: var(--first-color);
+    width: 100%;
+    color: #fff;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.4s;
+}
+
+.signUpButton:hover {
+    box-shadow: 0 4px 24px hsla(230, 75%, 40%, 0.4);
+}
+
+.showSignUp {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.showSignUp .signUpForm {
+    transform: translateY(0);
+}
+
+
+/* ================ SIDEBAR ================ */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hidden */
+    width: 250px;
+    height: 100%;
+    background-color: var(--container-color); /* Replace with your preferred color */
+    z-index: 999;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-links li {
+    margin: 1rem 0;
+}
+
+.sidebar-links a {
+    text-decoration: none;
+    color: var(--nav-link-color); 
+    font-size: 1.2rem;
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-links a:hover {
+    background-color: var(--border-color); 
+}
+
+.sidebar .menuClose {
+    font-size: 1.5rem;
+    color: var(--title-color);
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+/* Sidebar show state */
+.showSidebar {
+    left: 0;
+}
+
+
+/* ================ BREAKPOINTS ================ */
+/* For medium devices */
+@media screen and (min-width: 576px) {
+    .search {
+        padding-top: 10rem;
+    }
+
+    .searchForm {
+        max-width: 450px;
+        margin-inline: auto;
+    }
+
+    .searchClose,
+    .loginClose {
+        font-size: 2rem;
+    }
+
+    .loginForm {
+        max-width: 400px;
+        margin-inline: auto;
+    }
 }
