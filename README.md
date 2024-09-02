@@ -1,14 +1,14 @@
 # YouthxHack 2024 - Team 10: SNAKE 💚
 ## Members
-Anne Marie Sim (Team Leader)
+**A**nne Marie Sim (Team Leader)
 
-Tan Guo Zhi Kelvin
+Tan Guo Zhi **K**elvin
 
-Lee Yu Han Elissa
+Lee Yu Han **E**lissa
 
-Nicole Paige Manik
+**N**icole Paige Manik
 
-Sarah Than Sze J
+**S**arah Than Sze J
 
 ## Features
 1. Website Language Selector (Translator)
@@ -16,3 +16,8 @@ Sarah Than Sze J
 3. Accessibility Map
 4. Login / Signup
 5. AI Chatbot
+
+## Problem Statement
+Social Defence *[Sponsor: Dell]*
+
+How can we use technology to enable vulnerable groups to overcome language or physical barriers to access community networks, increasing and improving social interactions, especially during a crisis to empower them?

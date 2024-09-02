@@ -1,117 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Login</title>
-        <meta name="description" content="Login to chat with others">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/x-icon" href="#">
-        <link rel="stylesheet" type="text/css" href="styles/login.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg custom-navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
-                    <img src="#" alt="#">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav" id="navbar-links">
-                        <!-- Links will be populated here by userSession.js -->
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <!-- ==== CSS ==== -->
+    <link rel="stylesheet" href="../public/styles/login.css">
 
-        <!-- Google Translate element -->
-        <div id="google_translate_element"></div>
-          
-        <div class="content">
-            <div class="container">
-                <div class="login-form mt-4">
-                    <h2 class="text-center" id="login-title">User Login</h2>
-                    <div class="text-center mb-4">
-                        <button class="btn btn-primary" onclick="setLoginType('user')">User Login</button>
-                    </div>
-                    <form id="loginForm" action="?" method="POST">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                        </div>
-                        <div class="text-center">
-                            <p><small>Email and Password input are case-sensitive.</small></p>
-                            <p id="signup-link">New user? Click <a href="userSignUp.html">here</a> to sign up</p>
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                        </div>
-                    </form>
+    <!-- ==== Boxicons CSS ==== -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Firebase SDKs -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
+    
+    
+    <title>Navigation Bar</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-bar">
+            <span class="logo"><a href="#">Title</a></span>
+            
+            <div class="menu">
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Credits</a></li>
+                </ul>
+            </div>
+
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-moon moon'></i>
+                    <i class='bx bx-sun sun'></i>
+                </div>
+
+                <div class="searchAction">
+                    <i class="bx bx-search searchIcon" id="searchIcon"></i>
+                </div>
+
+                <div class="loginSignUpAction">
+                    <i class='bx bx-user userIcon' id="userIcon"></i>
+                </div>
+
+                <div class="menuAction">
+                    <i class='bx bx-menu menu' id="menuIcon"></i>
                 </div>
             </div>
         </div>
-        
-        <footer class="footer-custom">
-            <div class="text-center py-3">
-                <p>&copy; 2024 </p>
+    </nav>
+
+    <div class="search" id="search">
+        <form action="" class="searchForm">
+            <i class="bx bx-search searchIcon"></i>
+            <input type="search" placeholder="What are you looking for?" class="searchInput">
+        </form>
+    
+        <i class="bx bx-x searchClose" id="searchClose"></i>
+    </div>
+
+    <div class="login" id="login">
+        <form action="" class="loginForm">
+            <h2 class="loginTitle">Log In</h2>
+            <div class="loginGroup">
+                <div>
+                    <label for="email" class="loginLabel">Email</label>
+                    <input type="email" placeholder="Write your email" id="loginEmail" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="password" class="loginLabel">Password</label>
+                    <input type="password" placeholder="Enter your password" id="loginPassword" class="loginInput">
+                </div>
+
+                <div>
+                    <p class="loginSignUp">
+                        You do not have an account? <a href="javascript:void(0)" id="signUpLink">Sign Up</a></p>
+
+                    <a href="# " class="loginForgot">Forgot password?</a>
+
+                    <button type="submit" class="loginButton">Log In</button>
+                </div>
             </div>
-        </footer>
-        
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script src="scripts/login.js"></script>
-        <script src="scripts/accountSession.js"></script>
+        </form>
 
-        <!-- Google Translate script for website -->
-        <script type="text/javascript">
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    autoDisplay: false
-                }, 'google_translate_element');
-                
-                // Apply saved language after initialization
-                const savedLanguage = localStorage.getItem('googleTranslateLanguage');
-                if (savedLanguage) {
-                    setTimeout(() => {
-                        const translateElement = google.translate.TranslateElement.getInstance();
-                        if (translateElement) {
-                            translateElement.setEnabled(true);
-                            translateElement.setLanguage(savedLanguage);
-                        }
-                    }, 500); // Delay to ensure translate element is fully initialized
-                }
-            }
-    
-            function saveLanguagePreference() {
-                const translateElement = google.translate.TranslateElement.getInstance();
-                if (translateElement) {
-                    const selectedLanguage = translateElement.getCurrentLanguage();
-                    localStorage.setItem('googleTranslateLanguage', selectedLanguage);
-                }
-            }
-    
-            document.addEventListener('DOMContentLoaded', function() {
-                // Initialize Google Translate
-                googleTranslateElementInit();
-    
-                // Save language preference when it changes
-                document.addEventListener('change', function(event) {
-                    if (event.target && event.target.matches('.goog-te-menu2-item')) {
-                        saveLanguagePreference();
-                    }
-                });
-            });
-        </script>
-    
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>    
+        <i class="bx bx-x loginClose" id="loginClose"></i>
+    </div>
 
-    </body>
+    <div class="signUp" id="signUp">
+        <form action="" class="signUpForm">
+            <h2 class="signUpTitle">Sign Up</h2>
+            <div class="signUpGroup">
+                <div>
+                    <label for="name" class="loginLabel">Name</label>
+                    <input type="name" placeholder="Name" id="signUpName" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="email" class="loginLabel">Email</label>
+                    <input type="email" placeholder="Email" id="signUpEmail" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="password" class="loginLabel">Password</label>
+                    <input type="password" placeholder="Password" id="signUpPassword" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="loginLabel">Confirm Password</label>
+                    <input type="password" placeholder="Confirm Password" id="signUpConfirmPassword" class="loginInput">
+                </div>
+
+                <div>
+                    <p class="signUpLogin">
+                        Already have an account? <a href="javascript:void(0)" id="loginLink">Login</a></p>
+                    <button type="submit" class="signUpButton">Sign Up</button>
+                </div>
+            </div>
+        </form>
+
+        <i class="bx bx-x signUpClose" id="signUpClose"></i>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <i class='bx bx-x menuClose' id="menuClose"></i>
+        <ul class="sidebar-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Forum</a></li>
+            <li><a href="#">Credits</a></li>
+        </ul>
+    </div>
+
+    <!-- ==== SCRIPT ==== -->
+    <script type="module" src="../public/scripts/login.js"></script>
+</body>
 </html>
