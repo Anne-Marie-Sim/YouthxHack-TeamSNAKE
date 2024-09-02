@@ -10,5 +10,80 @@
     border: 2px solid #ccc; /* Optional: Add a subtle border */
     margin: 0 auto; /* Center the image horizontally */
   }
-  
+/* nav bar css */
+.custom-navbar {
+    background-color: lemonchiffon;
+}
 
+.navbar-brand img {
+    width: 150px;
+    height: auto;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 18px;
+}
+
+nav a {
+    margin: 0 8px;
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.content {
+    flex: 1;
+}
+
+/* hero section css */
+#hero-section {
+    position: relative;
+    height: 80vh;
+    background: url('../images/Support.svg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* cards css */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-link {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent elements */
+}
+
+/* footer css */
+.footer-custom {
+    background-color: #1F262D;
+}
+
+.footer-custom p {
+    margin: 0;
+    color: white;
+}
+
+.footer-custom a {
+    color: white;
+}
+
+.footer-custom a:hover {
+    color: #e8ad28; /* hover effect */
+}
