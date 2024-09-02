@@ -8,9 +8,6 @@ function checkAccountSession() {
       if (navbarLinks) {
         navbarLinks.innerHTML += `
           <li class="nav-item">
-            <a class="nav-link ${currentPage === 'index.html' ? 'active' : ''}" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link ${currentPage === dashboardLink ? 'active' : ''}" href="${dashboardLink}">${user.firstname}</a>
           </li>
           <li class="nav-item">
@@ -30,9 +27,6 @@ function checkAccountSession() {
       const navbarLinks = document.getElementById("navbar-links");
       if (navbarLinks) {
         navbarLinks.innerHTML = `
-          <li class="nav-item">
-            <a class="nav-link ${currentPage === 'index.html' ? 'active' : ''}" href="index.html">Home</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link ${currentPage === 'login.html' ? 'active' : ''}" href="login.html">Login</a>
           </li>
