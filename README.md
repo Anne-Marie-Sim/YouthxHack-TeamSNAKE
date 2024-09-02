@@ -13,9 +13,9 @@ Lee Yu Han **E**lissa
 ## Features
 1. Website Language Selector (Translator)
 2. Community Forum
-3. Accessibility Map
-4. Login / Signup
-5. AI Chatbot
+3. Request Volunteer
+4. AI Chatbot
+5. Login / Signup
 
 ## Problem Statement
 Social Defence *[Sponsor: Dell]*
