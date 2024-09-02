@@ -100,12 +100,48 @@
     <script src="scripts/forum.js"></script>
 
     <!-- Google Translate for website -->
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="text/javascript">
       function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+          new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              autoDisplay: false
+          }, 'google_translate_element');
+          
+          // Apply saved language after initialization
+          const savedLanguage = localStorage.getItem('googleTranslateLanguage');
+          if (savedLanguage) {
+              setTimeout(() => {
+                  const translateElement = google.translate.TranslateElement.getInstance();
+                  if (translateElement) {
+                      translateElement.setEnabled(true);
+                      translateElement.setLanguage(savedLanguage);
+                  }
+              }, 500); // Delay to ensure translate element is fully initialized
+          }
       }
-    </script>
+
+      function saveLanguagePreference() {
+          const translateElement = google.translate.TranslateElement.getInstance();
+          if (translateElement) {
+              const selectedLanguage = translateElement.getCurrentLanguage();
+              localStorage.setItem('googleTranslateLanguage', selectedLanguage);
+          }
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+          // Initialize Google Translate
+          googleTranslateElementInit();
+
+          // Save language preference when it changes
+          document.addEventListener('change', function(event) {
+              if (event.target && event.target.matches('.goog-te-menu2-item')) {
+                  saveLanguagePreference();
+              }
+          });
+      });
+  </script>
+
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   </body>
 </html>
