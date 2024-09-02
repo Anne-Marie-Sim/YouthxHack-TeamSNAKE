@@ -11,9 +11,6 @@ function checkAccountSession() {
             <a class="nav-link ${currentPage === dashboardLink ? 'active' : ''}" href="${dashboardLink}">${user.firstname}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link ${currentPage === 'resources.html' ? 'active' : ''}" href="resources.html">Resources</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link ${currentPage === 'forum.html' ? 'active' : ''}" href="forum.html">Forum</a>
           </li>
           <li class="nav-item">
@@ -29,9 +26,6 @@ function checkAccountSession() {
         navbarLinks.innerHTML = `
           <li class="nav-item">
             <a class="nav-link ${currentPage === 'login.html' ? 'active' : ''}" href="login.html">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link ${currentPage === 'resources.html' ? 'active' : ''}" href="resources.html">Resources</a>
           </li>
           <li class="nav-item">
             <a class="nav-link ${currentPage === 'forum.html' ? 'active' : ''}" href="forum.html">Forum</a>
