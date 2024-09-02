@@ -1,74 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Volunteer Assignment</title>
-  <link rel="stylesheet" href="./styles/request.css">  
-  <!-- Include the latest Firebase SDKs -->
-  <script type="module" src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>  
-  <!-- Your custom script -->
-  <script type="module" src="./scripts/request.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <!-- ==== CSS ==== -->
+    <link rel="stylesheet" href="../public/styles/login.css">
+    <link rel="stylesheet" href="./styles/request.css">  
+
+    <!-- ==== Boxicons CSS ==== -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Firebase SDKs -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
+    
+    
+    <title>Volunteer Assignment</title>
 </head>
 <body>
-  <!-- Google Translate element -->
-  <div id="google_translate_element"></div>
-  
-  <div class="container">
-    <h1>Welcome to Volunteer Assistance</h1>
-    <p>Click the button below to request a volunteer.</p>
+    <nav>
+        <div class="nav-bar">
+            <span class="logo"><a href="../public/index.html">2024 Help Go Where</a></span>
+            
+            <div class="menu">
+                <ul class="nav-links">
+                    <li><a href="../public/index.html">Home</a></li>
+                    <li><a href="../public/resources.html">Resources</a></li>
+                    <li><a href="../public/forum.html">Forum</a></li>
+                    <li><a href="../public/credits.html">Credits</a></li>
+                </ul>
+            </div>
+
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-moon moon'></i>
+                    <i class='bx bx-sun sun'></i>
+                </div>
+
+                <div class="searchAction">
+                    <i class="bx bx-search searchIcon" id="searchIcon"></i>
+                </div>
+
+                <div class="loginSignUpAction">
+                    <i class='bx bx-user userIcon' id="userIcon"></i>
+                </div>
+
+                <div class="menuAction">
+                    <i class='bx bx-menu menu' id="menuIcon"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="search" id="search">
+        <form action="" class="searchForm">
+            <i class="bx bx-search searchIcon"></i>
+            <input type="search" placeholder="What are you looking for?" class="searchInput">
+        </form>
     
-    <button id="request-volunteer-btn">Request Volunteer</button>
-    
-    <div id="volunteer-info" class="volunteer-info">
-      <p>No volunteer assigned yet.</p>
+        <i class="bx bx-x searchClose" id="searchClose"></i>
     </div>
-  </div>
 
-<!-- Google Translate script for website -->
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-          pageLanguage: 'en',
-          autoDisplay: false
-      }, 'google_translate_element');
+    <div class="login" id="login">
+        <form action="" class="loginForm">
+            <h2 class="loginTitle">Log In</h2>
+            <div class="loginGroup">
+                <div>
+                    <label for="email" class="loginLabel">Email</label>
+                    <input type="email" placeholder="Write your email" id="loginEmail" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="password" class="loginLabel">Password</label>
+                    <input type="password" placeholder="Enter your password" id="loginPassword" class="loginInput">
+                </div>
+
+                <div>
+                    <p class="loginSignUp">
+                        You do not have an account? <a href="javascript:void(0)" id="signUpLink">Sign Up</a></p>
+
+                    <a href="# " class="loginForgot">Forgot password?</a>
+
+                    <button type="submit" class="loginButton">Log In</button>
+                </div>
+            </div>
+        </form>
+
+        <i class="bx bx-x loginClose" id="loginClose"></i>
+    </div>
+
+    <div class="signUp" id="signUp">
+        <form action="" class="signUpForm">
+            <h2 class="signUpTitle">Sign Up</h2>
+            <div class="signUpGroup">
+                <div>
+                    <label for="name" class="loginLabel">Name</label>
+                    <input type="name" placeholder="Name" id="signUpName" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="email" class="loginLabel">Email</label>
+                    <input type="email" placeholder="Email" id="signUpEmail" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="password" class="loginLabel">Password</label>
+                    <input type="password" placeholder="Password" id="signUpPassword" class="loginInput">
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="loginLabel">Confirm Password</label>
+                    <input type="password" placeholder="Confirm Password" id="signUpConfirmPassword" class="loginInput">
+                </div>
+
+                <div>
+                    <p class="signUpLogin">
+                        Already have an account? <a href="javascript:void(0)" id="loginLink">Login</a></p>
+                    <button type="submit" class="signUpButton">Sign Up</button>
+                </div>
+            </div>
+        </form>
+
+        <i class="bx bx-x signUpClose" id="signUpClose"></i>
+    </div>
+
+    <div class="loggedUser" id="loggedUser">
+        <form action="" class="loggedUserForm">
+            <h2 class="loggedUserTitle">User Profile</h2>
+            <div class="loggedUserTitleGroup">
+                <div>
+                    <label for="name" class="loggedUserLabel">Name</label>
+                    <input type="name" placeholder="Name" id="loggedUserName" class="loggedUserInput" readonly>
+                </div>
+
+                <div>
+                    <label for="email" class="loggedUserLabel">Email</label>
+                    <input type="email" placeholder="Email" id="loggedUserEmail" class="loggedUserInput" readonly>
+                </div>
+
+                <div>
+                    <button type="submit" class="logOutUserButton">Logout</button>
+                </div>
+            </div>
+        </form>
+
+        <i class="bx bx-x loggedUserClose" id="loggedUserClose"></i>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <i class='bx bx-x menuClose' id="menuClose"></i>
+        <ul class="sidebar-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Forum</a></li>
+            <li><a href="#">Credits</a></li>
+            <li><a href="#">Logout</a></li>
+            <i class='bx bx-exit'></i>
+        </ul>
+    </div>
+
+    <div class="container">
+      <h1>Welcome to Volunteer Assistance</h1>
+      <p>Click the button below to request a volunteer.</p>
       
-      // Apply saved language after initialization
-      const savedLanguage = localStorage.getItem('googleTranslateLanguage');
-      if (savedLanguage) {
-          setTimeout(() => {
-              const translateElement = google.translate.TranslateElement.getInstance();
-              if (translateElement) {
-                  translateElement.setEnabled(true);
-                  translateElement.setLanguage(savedLanguage);
-              }
-          }, 500); // Delay to ensure translate element is fully initialized
-      }
-  }
+      <button id="request-volunteer-btn">Request Volunteer</button>
+      
+      <div id="volunteer-info" class="volunteer-info">
+        <p>No volunteer assigned yet.</p>
+      </div>
+    </div>
 
-  function saveLanguagePreference() {
-      const translateElement = google.translate.TranslateElement.getInstance();
-      if (translateElement) {
-          const selectedLanguage = translateElement.getCurrentLanguage();
-          localStorage.setItem('googleTranslateLanguage', selectedLanguage);
-      }
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Google Translate
-      googleTranslateElementInit();
-
-      // Save language preference when it changes
-      document.addEventListener('change', function(event) {
-          if (event.target && event.target.matches('.goog-te-menu2-item')) {
-              saveLanguagePreference();
-          }
-      });
-  });
-</script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+    <!-- ==== SCRIPT ==== -->
+    <!-- <script type="module" src="../public/scripts/login.js"></script> -->
+    <script type="module" src="./scripts/request.js"></script>
 </body>
 </html>
