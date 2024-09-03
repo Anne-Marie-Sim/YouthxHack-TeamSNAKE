@@ -50,19 +50,6 @@ function displayPost(postData) {
 
 window.onload = getPosts;
 
-// Hide post composer button by default
-//createPostButton.style.display = 'none';
-
-/*
-// Show post composer on button click
-createPostButton.addEventListener('click', () => {
-    postComposer.style.display = 'block';
-});
-
-// Hide post composer on close button click
-closePostComposerButton.addEventListener('click', () => {
-    postComposer.style.display = 'none';
-});*/
 
 document.addEventListener('DOMContentLoaded', function() {
     const createPostButton = document.getElementById('create-post-button');
@@ -78,7 +65,31 @@ document.addEventListener('DOMContentLoaded', function() {
     closePostComposerButton.addEventListener('click', function() {
         postComposer.style.display = 'none';
     });
+
+    createPostForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const title = document.getElementById('post-title').value;
+        const content = document.getElementById('post-content').value;
+        
+        try {
+            await addDoc(collection(db, 'posts'), {
+                title: title,
+                content: content,
+                accountId: "userId", // Replace with actual user ID if available
+                timestamp: serverTimestamp(),
+            });
+
+            // Hide the post composer and reset the form
+            postComposer.style.display = 'none';
+            createPostForm.reset();
+
+            // Refresh posts
+            getPosts();
+        } catch (error) {
+            console.error('Error adding document: ', error);
+        }
+    });
 });
 
-//loopsydoopsymylittleoopybabybobacobyuzzywuuzyjacuzzy
 
