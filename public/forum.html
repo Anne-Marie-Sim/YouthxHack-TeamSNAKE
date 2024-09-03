@@ -20,6 +20,33 @@
 
     <!-- ==== Bot CSS ==== -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <style>
+      /* CSS added as discussed above */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+  
+      #google_translate_element {
+        position: fixed;
+        top: 60px; /* Adjust this value based on your nav bar height */
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        z-index: 999;
+        padding: 10px 0;
+        text-align: center;
+        box-shadow: 0px 4px 2px -2px gray;
+      }
+  
+      body {
+        padding-top: 100px; /* Adjust this based on the height of the nav and translate element */
+      }
+    </style>
   </head>
 
   <body>
