@@ -1,17 +1,4 @@
 /* nav bar css */
-.custom-navbar {
-    background-color: lemonchiffon;
-}
-
-.navbar-brand img {
-    width: 150px;
-    height: auto;
-}
-
-.navbar-nav .nav-item .nav-link {
-    font-size: 18px;
-}
-
 nav a {
     margin: 0 8px;
     text-decoration: none;
@@ -23,6 +10,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+
 .content {
     flex: 1;
 }
