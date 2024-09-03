@@ -155,8 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
         loggedUser.classList.remove('showLoggedUser');
     });
 
-    // Initial call to set up UI based on current authentication state
-    toggleUserDetails();
+    // // Initial call to set up UI based on current authentication state
+    // toggleUserDetails();
 
     // Handle login on button click
     loginButton.addEventListener("click", async function(event) {
@@ -168,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+            
             alert(`Welcome back, ${user.email}!`);
 
             const userDocRef = doc(db, "users", user.uid);
@@ -214,7 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             alert(`Welcome, ${name}!`);
-            // Redirect to a different page or perform other actions
+            // Redirect to the home page
+            window.location.href = 'index.html';
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
