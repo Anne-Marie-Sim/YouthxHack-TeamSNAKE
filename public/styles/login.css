@@ -245,6 +245,7 @@ nav .nav-bar .logo a{
     opacity: 0;
     pointer-events: none;
     transition: opacity .4s;
+    visibility: hidden; /* Hide by default */
 }
 
 .loginForm {
@@ -324,6 +325,7 @@ nav .nav-bar .logo a{
 .showLogin {
     opacity: 1;
     pointer-events: initial;
+    visibility: visible; /* Ensure visibility is shown */
 }
 
 .showLogin .loginForm {
@@ -580,6 +582,21 @@ nav .nav-bar .logo a{
 /* Sidebar show state */
 .showSidebar {
     left: 0;
+}
+
+
+/* ================ FOOTER ================ */
+.footer-custom {
+    background-color: #1F262D;
+}
+
+.footer-custom p {
+    margin: 0;
+    color: white;
+}
+
+.footer-custom a {
+    color: white;
 }
 
 
