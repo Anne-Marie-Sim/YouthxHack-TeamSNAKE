@@ -31,17 +31,18 @@ function displayPost(postData) {
     const postDiv = document.createElement("div");
     const title = document.createElement("h2");
     const content = document.createElement("p");
-    const author = document.createElement("span");
+    const accountId = document.createElement("span");
     const timestamp = document.createElement("span");
 
     title.textContent = postData.title;
     content.textContent = postData.content;
-    author.textContent = `Posted by: ${postData.author}`;
-    timestamp.textContent = new Date(postData.timestamp).toLocaleString();
+    accountId.textContent = `Posted by: userId-${postData.accountId} \n`;
+    timestamp.textContent = timestamp.textContent = new Date(postData.timestamp * 1000).toLocaleString();
+
 
     postDiv.appendChild(title);
     postDiv.appendChild(content);
-    postDiv.appendChild(author);
+    postDiv.appendChild(accountId);
     postDiv.appendChild(timestamp);
 
     postsContainer.appendChild(postDiv);
@@ -80,3 +81,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //loopsydoopsymylittleoopybabybobacobyuzzywuuzyjacuzzy
+
