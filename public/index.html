@@ -26,6 +26,33 @@
     <title>Home</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+      /* CSS added as discussed above */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+  
+      #google_translate_element {
+        position: fixed;
+        top: 60px; /* Adjust this value based on your nav bar height */
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        z-index: 999;
+        padding: 10px 0;
+        text-align: center;
+        box-shadow: 0px 4px 2px -2px gray;
+      }
+  
+      body {
+        padding-top: 100px; /* Adjust this based on the height of the nav and translate element */
+      }
+    </style>
   </head>
 
   <body>
